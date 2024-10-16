@@ -6,8 +6,8 @@ const Producto = require('./models/Producto');
 const cors = require('cors');
 const app = express();
 const router = express.Router();
-module.exports.handler = serverless(app);
 app.use(cors());
+
 // Exportar el handler para ser usado con Serverless Framework
 
 const PORT = 3000;
@@ -52,4 +52,5 @@ router.post('/producto', async (req, res) => {
         res.status(400).json({ mensaje: 'Error al guardar producto' });
     }
 });
-
+app.use("/.netlify/functions/app", router);
+module.exports.handler = serverless(app);
