@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 });
 
 // Inicia el servidor
-router.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 // Ruta para obtener todos los productos
