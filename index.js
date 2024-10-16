@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const Producto = require('./models/Producto');
 const cors = require('cors');
 const app = express();
+module.exports.handler = serverless(app);
 app.use(cors());
 // Exportar el handler para ser usado con Serverless Framework
-module.exports.handler = serverless(app);
 
 const PORT = 3000;
 
