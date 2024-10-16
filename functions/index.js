@@ -1,9 +1,14 @@
 const express = require('express');
+const serverless = require("serverless-http");
+
 const mongoose = require('mongoose');
-const Producto = require('../models/Producto');
+const Producto = require('./models/Producto');
 const cors = require('cors');
 const app = express();
+module.exports.handler = serverless(app);
 app.use(cors());
+// Exportar el handler para ser usado con Serverless Framework
+
 const PORT = 3000;
 
 // Middleware para poder recibir JSON en las solicitudes
@@ -46,3 +51,4 @@ app.post('/producto', async (req, res) => {
         res.status(400).json({ mensaje: 'Error al guardar producto' });
     }
 });
+
