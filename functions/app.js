@@ -47,7 +47,7 @@ router.post('/producto', async (req, res) => {
         const productoGuardado = await nuevoProducto.save();
         res.status(201).json(productoGuardado);
     } catch (error) {
-        res.status(400).json({ mensaje: 'Error al guardar producto' });
+        res.status(400).json({ mensaje: 'Error al guardar producto', error: error.message });
     }
 });
 app.use("/.netlify/functions/app", router);
