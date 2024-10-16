@@ -35,7 +35,7 @@ router.get('/productos', async (req, res) => {
         const productos = await Producto.find();
         res.json(productos);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error al obtener productos' });
+        res.status(500).json({ mensaje: 'Error al obtener productos', error });
     }
 });
 
