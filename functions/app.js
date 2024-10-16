@@ -41,9 +41,9 @@ router.get('/productos', async (req, res) => {
 
 // Ruta para añadir un nuevo producto
 router.post('/producto', async (req, res) => {
-    const { nombre, precio, stock } = req.body;
+    const { nombre, precio, stock, image } = req.body;
 
-    const nuevoProducto = new Producto({ nombre, precio, stock });
+    const nuevoProducto = new Producto({ nombre, precio, stock, image });
 
     try {
         const productoGuardado = await nuevoProducto.save();
