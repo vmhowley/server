@@ -13,7 +13,7 @@ app.use(cors());
 const PORT = 3000;
 
 // Middleware para poder recibir JSON en las solicitudes
-router.use(express.json());
+app.use(express.json());
 
 // Conexión a MongoDB
 mongoose.connect('mongodb+srv://benito:d6P2VtPRTKqAXWEV@cluster0.vdiynua.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true })
