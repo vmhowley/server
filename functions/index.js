@@ -2,7 +2,7 @@ const express = require('express');
 const serverless = require("serverless-http");
 
 const mongoose = require('mongoose');
-const Producto = require('./models/Producto');
+const Producto = require('../models/Producto');
 const cors = require('cors');
 const app = express();
 module.exports.handler = serverless(app);
