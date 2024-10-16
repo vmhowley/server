@@ -16,7 +16,7 @@ const PORT = 3000;
 router.use(express.json());
 
 // Conexión a MongoDB
-mongoose.connect('mongodb://localhost:27017/sneackculture', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://admin:admin@cluster0.vdiynua.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Conectado a MongoDB'))
     .catch(err => console.error('Error al conectar con MongoDB', err));
 
