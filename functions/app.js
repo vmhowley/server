@@ -13,7 +13,7 @@ app.use(cors());
 const PORT = 3000;
 
 // Middleware para poder recibir JSON en las solicitudes
-app.use(express.json());
+router.use(express.json());
 
 // Conexión a MongoDB
 mongoose.connect('mongodb+srv://benito:d6P2VtPRTKqAXWEV@cluster0.vdiynua.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -26,9 +26,7 @@ router.get('/', (req, res) => {
 });
 
 // Inicia el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
-});
+
 // Ruta para obtener todos los productos
 router.get('/productos', async (req, res) => {
     try {
