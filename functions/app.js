@@ -8,10 +8,6 @@ const app = express();
 const router = express.Router();
 app.use(cors());
 
-// Exportar el handler para ser usado con Serverless Framework
-
-const PORT = 3000;
-
 // Middleware para poder recibir JSON en las solicitudes
 router.use(express.json());
 
@@ -39,9 +35,9 @@ router.get('/productos', async (req, res) => {
 
 // Ruta para añadir un nuevo producto
 router.post('/producto', async (req, res) => {
-    const { nombre, precio, stock, image } = req.body;
+    const { name, brand, image, size, price, quatity, category, condition } = req.body;
 
-    const nuevoProducto = new Producto({ nombre, precio, stock, image });
+    const nuevoProducto = new Producto({ name, brand, image, size, price, quatity, category, condition });
 
     try {
         const productoGuardado = await nuevoProducto.save();
@@ -50,5 +46,25 @@ router.post('/producto', async (req, res) => {
         res.status(400).json({ mensaje: 'Error al guardar producto', error: error.message });
     }
 });
+
+// Ruta para actualizar un producto
+
+router.put('/:id', async (req, res) => {
+    const { name, brand, image, size, price, quatity, category, condition } = req.body;
+
+    const productoActualizado = await Producto.findByIdAndUpdate(req.params.id, { name, brand, image, size, price, quatity, category, condition }, { new: true });
+
+    if (!productoActualizado) return res.status(404).json({ message: 'Producto no encontrado' });
+
+    res.json(productoActualizado);
+});
+
+// Ruta para eliminar un producto
+
+router.delete('/:id', async (req, res) => {
+    await Producto.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Producto eliminado' });
+  });
+
 app.use("/.netlify/functions/app", router);
 module.exports.handler = serverless(app);
