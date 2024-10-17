@@ -35,9 +35,9 @@ router.get('/productos', async (req, res) => {
 
 // Ruta para añadir un nuevo producto
 router.post('/producto', async (req, res) => {
-    const { name, brand, image, size, price, quatity, category, condition } = req.body;
+    const { name, brand, image, size, price, quantity, category, condition } = req.body;
 
-    const nuevoProducto = new Producto({ name, brand, image, size, price, quatity, category, condition });
+    const nuevoProducto = new Producto({ name, brand, image, size, price, quantity, category, condition });
 
     try {
         const productoGuardado = await nuevoProducto.save();
@@ -52,7 +52,7 @@ router.post('/producto', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const { name, brand, image, size, price, quatity, category, condition } = req.body;
 
-    const productoActualizado = await Producto.findByIdAndUpdate(req.params.id, { name, brand, image, size, price, quatity, category, condition }, { new: true });
+    const productoActualizado = await Producto.findByIdAndUpdate(req.params.id, { name, brand, image, size, price, qunatity, category, condition }, { new: true });
 
     if (!productoActualizado) return res.status(404).json({ message: 'Producto no encontrado' });
 
